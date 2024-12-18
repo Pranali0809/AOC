@@ -1,11 +1,10 @@
-INPUT_FILE_PATH = './temp.txt'
+INPUT_FILE_PATH = './input9.txt'
 def main():
     with open(INPUT_FILE_PATH, 'r') as f:
         lines = f.read()
-        sum=0
+    sum=0
     i=0
     lines = [c for c in lines]
-    dot=[]
     numbers=[]
 
     index=0
@@ -22,80 +21,39 @@ def main():
                 temp=temp+'.'
             numbers.append(temp)
     
-    i=0
+    i=len(lines)-1
     j=len(lines)-1
     if(len(lines)%2==0):
         j=j-1
 
-    print(numbers)
-
     start=1
-    for i in range(j,0,-2):
-        print("i:",i)
+    while i>0:
+        start=1
         while(start<i):
-            print("start: ",start)
-            if numbers[start]!='' and numbers[start][0]=='.' and len(numbers[i])<len(numbers[start]):
+            if numbers[start]!='' and numbers[start][0]=='.' and numbers[i] and numbers[i][0]!='.' and len(numbers[i])<=len(numbers[start]):
                 numbers.insert(start,numbers[i])
                 start=start+1
-                numbers[start]=numbers[start][len(numbers[i]):]
-                numbers[i+1]='.'*len(numbers[i+1])
-                print("t:",numbers[i+1],i+1)
+                numbers[start]='.'*(len(numbers[start])-len(numbers[i+1]))
+                i=i+1
+                numbers[i]='.'*len(numbers[i])
                 break
             else:
                 start=start+1
+        i=i-1
+    index=0
+    for string in numbers:
+        if string:
+            if string[0]!='.':
+                for char in string:
+                    
+                    sum+=int(char)*index
+                    
+                    index=index+1
+            else:
+                index=index+len(string)
+            
 
-    print(numbers)
+    print(sum)
                         
-
-
-        
-
-     
-
-
-
-        
-            
-                
-            
-            
-            
-            
-
-
-
-
-#     index=0
-#     counterstart=0
-#     counterend=int(len(lines)/2)
-
-#     if len(lines)%2!=0:
-#         j=len(lines)-1
-#     else:
-#         j=len(lines)-2
-   
-#     while i<=j:
-#         if i%2==0:
-#             for s in range(int(lines[i])):
-#                 sum+=index*counterstart
-#                 index=index+1
-#             counterstart=counterstart+1
-#             i=i+1
-#         else:
-#             if int(lines[i])<int(lines[j]):
-#                 lines[j]=str(int(lines[j])-int(lines[i]))
-#                 for q in range(int(lines[i])):
-#                     sum+=index*counterend
-#                     index=index+1
-#                 i=i+1
-#             else:
-#                 lines[i]=str(int(lines[i])-int(lines[j]))
-#                 for r in range(int(lines[j])):
-#                     sum+=index*counterend
-#                     index=index+1
-#                 counterend=counterend-1
-#                 j=j-2    
-#     print(sum)            
-
 if __name__ == "__main__":
     main()
