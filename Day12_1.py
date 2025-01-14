@@ -17,14 +17,12 @@ def rec(i,j,m,n,matrix,parent,perimeter,area):
     if parent !=matrix[i][j]:
         return [1,0]
     
-
     
     if parent==matrix[i][j]:
         a=1
         p=0
         matrix[i][j]=matrix[i][j].lower()
         for k in dict.keys():
-
            temp=rec(i+dict[k][0],j+dict[k][1],m,n,matrix,parent,perimeter,area)
            p+=temp[0]
            a+=temp[1]
@@ -37,7 +35,6 @@ def main():
         lines = f.read().split("\n")
         array_2d = [list(line) for line in lines if line.strip()]  # Convert each line into a list of characters
     
-    print(array_2d)
     m=len(array_2d)
     n=len(array_2d[0])
     sum=0
