@@ -25,8 +25,6 @@ def main():
     with open(INPUT_FILE_PATH, 'r') as f:
         lines = f.read().split(" ")
     
-
-    
     ans=0
     for i in range(len(lines)):
         ans+=rec([lines[i]],0)
